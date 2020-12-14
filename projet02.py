@@ -8,10 +8,16 @@ liste = []
 if resultat.ok:
     soup = BeautifulSoup(resultat.text, 'lxml')
     titre = soup.find('h1')
+    f = open('donnee.csv', 'w')
+    with f:
+        writer = csv.writer(f)
+        writer.writerow(titre)
 
-    data = soup.find_all('th')
+    """data = soup.find_all('th')
     for i in data:
         print(i.string)
     data1 = soup.find_all('td')
     for j in data1:
-        print(j.string)
+        print(j.string)"""
+
+
