@@ -4,23 +4,22 @@ import csv
 
 url = 'http://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html'
 resultat = requests.get(url)
-liste = []
-liste1 = []
+"""liste = []
+liste1 = []"""
+
 if resultat.ok:
     soup = BeautifulSoup(resultat.text, 'lxml')
 
-    data = soup.find_all('th', text='')
-    print(data)
+    data = soup.find_all('th')
 
-    data1 = soup.find_all('td', text='')
-    print(data1)
+    data1 = soup.find_all('td')
 
-    with open('donnee.csv', 'w') as fichier:
-        writer = csv.writer(fichier)
+    with open('donnee.csv', 'w') as f:
+        writer = csv.writer(f)
         for row in data:
             writer.writerow(row)
-
-
+        for column in data1:
+            writer.writerow(column)
 
     """for i in data:
         liste.append(i)
