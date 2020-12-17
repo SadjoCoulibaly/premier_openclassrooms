@@ -7,9 +7,16 @@ def url_donnee(url_lien):
     result_url = requests.get(url_lien)
     if result_url.ok:
         soup = BeautifulSoup(result_url.text, 'lxml')
-        d1 = soup.find('h1')
-        print(d1.text)
+
     return url_lien, soup
+
+
+def le_titre(title=''):
+    lien = 'http://books.toscrape.com/catalogue/worlds-elsewhere-journeys-around-shakespeares-globe_972/index.html'
+    url_donnee(lien)
+    d = soup.find(title)
+    print(d.text)
+    return d
 
 
 def recuperation(rec=''):
@@ -24,10 +31,12 @@ def donnee(bal=''):
     tab = []
     for i in iii:
         tab.append(i.string)
-    print(tab)
     return tab
 
 
+t = le_titre('h1')
 d1 = donnee('th')
-
 d2 = donnee('td')
+
+glo = dict(zip(d1, d2))
+print(glo)
